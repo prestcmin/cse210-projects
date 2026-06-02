@@ -34,8 +34,14 @@ public class Word
         }
     }
 
-    public string GetChosenWord() => _chosen;
-    public int GetChosenIndex() => _chosenIndex;
+    public string GetChosenWord()
+    {
+        return _chosen;
+    }
+    public int GetChosenIndex()
+    {
+        return _chosenIndex;
+    }
 
     public string HideCurrentWord()
     {
@@ -46,7 +52,16 @@ public class Word
     {
         string hidden = "";
         foreach (char c in word)
-            hidden += char.IsLetter(c) ? "_" : c;
+        {
+            if (char.IsLetter(c))
+            {
+                hidden += "_";
+            }
+            else
+            {
+                hidden += c;
+            }
+        }
         return hidden;
     }
 }
