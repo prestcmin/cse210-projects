@@ -1,0 +1,2 @@
+This is my program for Finance Management! It has full income/expense tracking. You can even set a budget and get a budget report for any given month, so long as they are present within the file loaded.
+There is also full saving and loading functionality, so that you can continue a single budget report across multiple instances.
