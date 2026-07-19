@@ -16,7 +16,6 @@ public class Menu
     public void Run()
     {
         Console.WriteLine("Welcome to your Personal Finance Tracker!");
-        Console.WriteLine("(This is a work in progress. Budgets and reports are not hooked up yet.)");
 
         while (_running == true)
         {
@@ -43,6 +42,18 @@ public class Menu
             {
                 LoadFlow();
             }
+            else if (choice == "6")
+            {
+                SetBudgetFlow();
+            }
+            else if (choice == "7")
+            {
+                MonthlySummaryFlow();
+            }
+            else if (choice == "8")
+            {
+                BudgetReportFlow();
+            }
             else if (choice == "0")
             {
                 _running = false;
@@ -64,6 +75,9 @@ public class Menu
         Console.WriteLine("3. View All Transactions and Balance");
         Console.WriteLine("4. Save Data to File");
         Console.WriteLine("5. Load Data from File");
+        Console.WriteLine("6. Set a Budget");
+        Console.WriteLine("7. View Monthly Summary Report");
+        Console.WriteLine("8. View Budget Report");
         Console.WriteLine("0. Exit");
         Console.WriteLine("---------------------------------------");
     }
@@ -122,6 +136,28 @@ public class Menu
         string filePath = GetValidString("Enter the file name to load from (e.g. budget.txt): ");
         _financeManager.LoadFromFile(filePath);
         Console.WriteLine("Data loaded successfully.");
+    }
+
+    private void SetBudgetFlow()
+    {
+        string category = GetValidString("Enter the category name for this budget: ");
+        double limit = GetValidDouble("Enter the monthly spending limit: $");
+        _financeManager.AddBudget(category, limit);
+    }
+
+    private void MonthlySummaryFlow()
+    {
+        _financeManager.ShowMonthlySummary();
+        Console.WriteLine("Press Enter to continue...");
+        Console.ReadLine();
+    }
+
+    private void BudgetReportFlow()
+    {
+        string month = GetValidString("Enter the month to review (yyyy-MM): ");
+        _financeManager.ShowBudgetReport(month);
+        Console.WriteLine("Press Enter to continue...");
+        Console.ReadLine();
     }
 
     private double GetValidDouble(string prompt)
